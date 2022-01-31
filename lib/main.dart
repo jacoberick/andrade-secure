@@ -1,4 +1,5 @@
 import 'package:andrade_secure/providers/credential_provider.dart';
+import 'package:andrade_secure/widgets/credential_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 
@@ -18,11 +19,16 @@ class AndradeSecure extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CupertinoApp(
+    return CupertinoApp(
       debugShowCheckedModeBanner: false,
       title: "Andrade Secure",
       home: CupertinoPageScaffold(
-        child: Dashboard(),
+        child: Column(
+          children: const [
+            Dashboard(),
+            CredentailList(),
+          ],
+        ),
       ),
     );
   }

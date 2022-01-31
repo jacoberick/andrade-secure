@@ -19,6 +19,6 @@ class CredentialProvider with ChangeNotifier {
     }
   ];
 
-  get credentials => _credentails;
+  get credentialArr => _credentails;
   get credentialLength => _credentails.length;
 }

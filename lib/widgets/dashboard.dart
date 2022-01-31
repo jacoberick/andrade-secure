@@ -46,7 +46,7 @@ class Dashboard extends StatelessWidget {
 
     return Container(
       color: const Color(0xfffc5723),
-      padding: EdgeInsets.fromLTRB(20, statusBarHeight, 20, 0),
+      padding: EdgeInsets.fromLTRB(20, statusBarHeight, 20, 15),
       child: Column(
         children: [
           Row(
