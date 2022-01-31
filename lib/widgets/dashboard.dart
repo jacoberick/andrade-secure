@@ -53,9 +53,9 @@ class Dashboard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: const [
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16),
+                padding: EdgeInsets.symmetric(horizontal: 10),
                 child: Text(
-                  'Passwords',
+                  'Andrade Secure',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 27,
@@ -73,7 +73,7 @@ class Dashboard extends StatelessWidget {
             ],
           ),
           Container(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.all(10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.end,

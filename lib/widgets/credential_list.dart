@@ -8,13 +8,16 @@ class CredentailList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var credentialArr = Provider.of<CredentialProvider>(context).credentialArr;
+    print(credentialArr[0]['url']);
 
     return Expanded(
       child: ListView.builder(
-        padding: const EdgeInsets.all(0),
+        padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 30),
         itemCount: credentialArr.length,
-        itemBuilder: (context, index) {
-          return Text('hi');
+        itemBuilder: (context, i) {
+          return Image(
+            image: NetworkImage("${credentialArr[i]['url']}/favicon.ico"),
+          );
         },
       ),
     );
