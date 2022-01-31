@@ -1,14 +1,38 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 
 class Dashboard extends StatelessWidget {
   const Dashboard({Key? key}) : super(key: key);
 
-  createStats() {
+  createStats(numb, type, emphasise) {
     return Column(
-      children: const [
-        Text('58'),
-        Text('Passwords'),
+      children: [
+        Text(
+          numb,
+          style: TextStyle(
+              fontSize: emphasise == 'strong' ? 50 : 25,
+              fontWeight: FontWeight.bold),
+        ),
+        Text(
+          type,
+          style: const TextStyle(fontSize: 15),
+        ),
+        Container(
+          height: 20,
+          width: emphasise == 'strong' ? 110 : 80,
+          decoration: const BoxDecoration(
+            border: Border(
+              left: BorderSide(
+                width: 1.5,
+              ),
+              bottom: BorderSide(
+                width: 1.5,
+              ),
+              right: BorderSide(
+                width: 1.5,
+              ),
+            ),
+          ),
+        ),
       ],
     );
   }
@@ -31,7 +55,7 @@ class Dashboard extends StatelessWidget {
                   'Passwords',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 30,
+                    fontSize: 27,
                     color: Color(0xff121212),
                   ),
                 ),
@@ -45,14 +69,15 @@ class Dashboard extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(
-            height: 20,
-          ),
           Container(
             padding: const EdgeInsets.all(16),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                createStats(),
+                createStats('58', 'Passwords', 'strong'),
+                createStats('47', 'Strong', 'weak'),
+                createStats('11', 'Mediocre', 'weak'),
               ],
             ),
           ),
