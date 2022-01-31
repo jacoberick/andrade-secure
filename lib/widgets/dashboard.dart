@@ -1,4 +1,6 @@
+import 'package:andrade_secure/providers/credential_provider.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:provider/provider.dart';
 
 class Dashboard extends StatelessWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -40,6 +42,7 @@ class Dashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var statusBarHeight = MediaQuery.of(context).viewPadding.top;
+    var listLength = Provider.of<CredentialProvider>(context).credentialLength;
 
     return Container(
       color: const Color(0xfffc5723),
@@ -75,7 +78,7 @@ class Dashboard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                createStats('58', 'Passwords', 'strong'),
+                createStats(listLength.toString(), 'Passwords', 'strong'),
                 createStats('47', 'Strong', 'weak'),
                 createStats('11', 'Mediocre', 'weak'),
               ],

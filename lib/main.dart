@@ -1,9 +1,16 @@
+import 'package:andrade_secure/providers/credential_provider.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:provider/provider.dart';
 
 import './widgets/dashboard.dart';
 
 void main() {
-  runApp(const AndradeSecure());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => CredentialProvider(),
+      child: const AndradeSecure(),
+    ),
+  );
 }
 
 class AndradeSecure extends StatelessWidget {
