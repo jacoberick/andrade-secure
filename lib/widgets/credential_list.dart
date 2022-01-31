@@ -9,8 +9,14 @@ class CredentailList extends StatelessWidget {
   Widget build(BuildContext context) {
     var credentialArr = Provider.of<CredentialProvider>(context).credentialArr;
 
-    print(credentialArr);
-
-    return Container();
+    return Expanded(
+      child: ListView.builder(
+        padding: const EdgeInsets.all(0),
+        itemCount: credentialArr.length,
+        itemBuilder: (context, index) {
+          return Text('hi');
+        },
+      ),
+    );
   }
 }

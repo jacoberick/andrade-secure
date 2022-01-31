@@ -19,7 +19,7 @@ class Dashboard extends StatelessWidget {
           style: const TextStyle(fontSize: 15),
         ),
         Container(
-          height: 20,
+          height: 15,
           width: emphasise == 'strong' ? 110 : 80,
           decoration: const BoxDecoration(
             border: Border(
