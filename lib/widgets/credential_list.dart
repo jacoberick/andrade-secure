@@ -34,8 +34,14 @@ class CredentailList extends StatelessWidget {
                       margin: const EdgeInsets.only(right: 20),
                       child: Center(
                         child: FadeInImage.assetNetwork(
-                            placeholder: cupertinoActivityIndicator,
-                            image: "${credentialArr[i]['url']}/favicon.ico"),
+                          placeholder: cupertinoActivityIndicator,
+                          image: "${credentialArr[i]['url']}/favicon.ico",
+                          imageErrorBuilder: (context, error, stackTrace) =>
+                              const Icon(
+                            CupertinoIcons.circle,
+                            color: Colors.black,
+                          ),
+                        ),
                       ),
                     ),
                     Column(
