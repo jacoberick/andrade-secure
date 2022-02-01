@@ -2,18 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:loading_gifs/loading_gifs.dart';
 
-class CredentialItem extends StatefulWidget {
+class CredentialItem extends StatelessWidget {
   final List credentialArr;
   final int arrIndex;
 
   const CredentialItem(this.credentialArr, this.arrIndex, {Key? key})
       : super(key: key);
 
-  @override
-  State<CredentialItem> createState() => _CredentialItemState();
-}
-
-class _CredentialItemState extends State<CredentialItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -35,8 +30,7 @@ class _CredentialItemState extends State<CredentialItem> {
                 child: Center(
                   child: FadeInImage.assetNetwork(
                     placeholder: cupertinoActivityIndicator,
-                    image:
-                        "${widget.credentialArr[widget.arrIndex]['url']}/favicon.ico",
+                    image: "${credentialArr[arrIndex]['url']}/favicon.ico",
                     imageErrorBuilder: (context, error, stackTrace) =>
                         const Icon(
                       CupertinoIcons.circle,
@@ -49,12 +43,12 @@ class _CredentialItemState extends State<CredentialItem> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    widget.credentialArr[widget.arrIndex]['service'],
+                    credentialArr[arrIndex]['service'],
                     style: const TextStyle(
                         fontWeight: FontWeight.bold, color: Color(0xfffefefe)),
                   ),
                   Text(
-                    widget.credentialArr[widget.arrIndex]['username'],
+                    credentialArr[arrIndex]['username'],
                     style: TextStyle(fontSize: 14, color: Colors.grey.shade400),
                   ),
                 ],

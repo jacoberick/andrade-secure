@@ -1,9 +1,23 @@
 import 'package:andrade_secure/providers/credential_provider.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class Dashboard extends StatelessWidget {
+class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
+
+  @override
+  State<Dashboard> createState() => _DashboardState();
+}
+
+class _DashboardState extends State<Dashboard> {
+  bool _activeSearch = false;
+
+  void _handleOnTapSearch() {
+    setState(() {
+      _activeSearch = !_activeSearch;
+    });
+  }
 
   createStats(numb, type, emphasise) {
     return Column(
@@ -51,24 +65,31 @@ class Dashboard extends StatelessWidget {
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                child: Text(
-                  'Andrade Secure',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 27,
-                    color: Color(0xff121212),
-                  ),
-                ),
-              ),
+            children: [
+              _activeSearch
+                  ? const Expanded(
+                      child: CupertinoSearchTextField(
+                      style: TextStyle(color: Colors.white),
+                      autofocus: true,
+                      backgroundColor: Color(0xff121212),
+                    ))
+                  : const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      child: Text(
+                        'Andrade Secure',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 27,
+                          color: Color(0xff121212),
+                        ),
+                      ),
+                    ),
               CupertinoButton(
                 child: Icon(
-                  CupertinoIcons.search,
-                  color: Color(0xff121212),
+                  _activeSearch ? CupertinoIcons.xmark : CupertinoIcons.search,
+                  color: const Color(0xff121212),
                 ),
-                onPressed: null,
+                onPressed: () => _handleOnTapSearch(),
               ),
             ],
           ),
