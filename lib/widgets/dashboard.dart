@@ -14,12 +14,6 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   bool _activeSearch = false;
 
-  void _handleOnTapSearch() {
-    setState(() {
-      _activeSearch = !_activeSearch;
-    });
-  }
-
   createStats(numb, type, emphasise) {
     return Column(
       children: [
@@ -56,10 +50,16 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   Widget build(BuildContext context) {
-    var passSearchParams =
-        Provider.of<SearchProvider>(context).updateSearchParams;
     var statusBarHeight = MediaQuery.of(context).viewPadding.top;
     var listLength = Provider.of<CredentialProvider>(context).credentialLength;
+    Function passSearchParams =
+        Provider.of<SearchProvider>(context).updateSearchParams;
+    void _handleOnTapSearch() {
+      setState(() {
+        _activeSearch = !_activeSearch;
+        _activeSearch ? passSearchParams('') : null;
+      });
+    }
 
     return Container(
       padding: EdgeInsets.fromLTRB(20, statusBarHeight, 20, 15),
@@ -75,13 +75,12 @@ class _DashboardState extends State<Dashboard> {
               _activeSearch
                   ? Expanded(
                       child: CupertinoSearchTextField(
-                        placeholder: 'Search by Service',
-                        style: const TextStyle(color: Colors.white),
-                        autofocus: true,
-                        backgroundColor: const Color(0xff121212),
-                        onChanged: (value) => passSearchParams(value),
-                      ),
-                    )
+                      placeholder: 'Search by Service',
+                      style: const TextStyle(color: Colors.white),
+                      autofocus: true,
+                      backgroundColor: const Color(0xff121212),
+                      onChanged: (value) => passSearchParams(value),
+                    ))
                   : const Padding(
                       padding: EdgeInsets.symmetric(horizontal: 10),
                       child: Text(
