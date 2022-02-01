@@ -12,6 +12,7 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> {
   bool _activeSearch = false;
+  String searchContent = '';
 
   void _handleOnTapSearch() {
     setState(() {
@@ -59,19 +60,26 @@ class _DashboardState extends State<Dashboard> {
     var listLength = Provider.of<CredentialProvider>(context).credentialLength;
 
     return Container(
-      color: const Color(0xfffc5723),
       padding: EdgeInsets.fromLTRB(20, statusBarHeight, 20, 15),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15),
+        color: const Color(0xfffc5723),
+      ),
       child: Column(
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               _activeSearch
-                  ? const Expanded(
+                  ? Expanded(
                       child: CupertinoSearchTextField(
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                       autofocus: true,
-                      backgroundColor: Color(0xff121212),
+                      backgroundColor: const Color(0xff121212),
+                      onChanged: (value) {
+                        searchContent = value;
+                        print(searchContent);
+                      },
                     ))
                   : const Padding(
                       padding: EdgeInsets.symmetric(horizontal: 10),
