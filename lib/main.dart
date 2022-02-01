@@ -23,6 +23,7 @@ class AndradeSecure extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: "Andrade Secure",
       home: CupertinoPageScaffold(
+        backgroundColor: const Color(0xff121212),
         child: Column(
           children: const [
             Dashboard(),

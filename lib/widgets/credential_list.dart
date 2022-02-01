@@ -21,7 +21,7 @@ class CredentailList extends StatelessWidget {
                 Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
-                    color: const Color(0xff121212),
+                    color: const Color(0xfffefefe),
                   ),
                   padding: const EdgeInsets.all(5),
                   margin: const EdgeInsets.only(right: 20),
@@ -36,12 +36,14 @@ class CredentailList extends StatelessWidget {
                   children: [
                     Text(
                       credentialArr[i]['service'],
-                      style: const TextStyle(fontWeight: FontWeight.bold),
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xfffefefe)),
                     ),
                     Text(
                       credentialArr[i]['username'],
                       style:
-                          TextStyle(fontSize: 14, color: Colors.grey.shade700),
+                          TextStyle(fontSize: 14, color: Colors.grey.shade400),
                     ),
                   ],
                 )
