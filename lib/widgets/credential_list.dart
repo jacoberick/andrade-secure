@@ -17,12 +17,18 @@ class CredentailList extends StatelessWidget {
     credentialArr.sort(
         (a, b) => a["service"].toString().compareTo(b["service"].toString()));
 
+    var filteredList = [...credentialArr]
+        .where((c) => c['service']
+            .toLowerCase()
+            .startsWith(searchParamInfo.toLowerCase()))
+        .toList();
+
     return Expanded(
       child: ListView.builder(
         padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 30),
-        itemCount: credentialArr.length,
+        itemCount: filteredList.length,
         itemBuilder: (context, i) {
-          return CredentialItem(credentialArr, i);
+          return CredentialItem(filteredList, i);
         },
       ),
     );

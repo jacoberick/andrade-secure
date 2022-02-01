@@ -1,4 +1,5 @@
 import 'package:andrade_secure/providers/credential_provider.dart';
+import 'package:andrade_secure/providers/search_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -12,7 +13,6 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> {
   bool _activeSearch = false;
-  String searchContent = '';
 
   void _handleOnTapSearch() {
     setState(() {
@@ -56,6 +56,8 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   Widget build(BuildContext context) {
+    var passSearchParams =
+        Provider.of<SearchProvider>(context).updateSearchParams;
     var statusBarHeight = MediaQuery.of(context).viewPadding.top;
     var listLength = Provider.of<CredentialProvider>(context).credentialLength;
 
@@ -73,13 +75,13 @@ class _DashboardState extends State<Dashboard> {
               _activeSearch
                   ? Expanded(
                       child: CupertinoSearchTextField(
-                      style: const TextStyle(color: Colors.white),
-                      autofocus: true,
-                      backgroundColor: const Color(0xff121212),
-                      onChanged: (value) {
-                        searchContent = value;
-                      },
-                    ))
+                        placeholder: 'Search by Service',
+                        style: const TextStyle(color: Colors.white),
+                        autofocus: true,
+                        backgroundColor: const Color(0xff121212),
+                        onChanged: (value) => passSearchParams(value),
+                      ),
+                    )
                   : const Padding(
                       padding: EdgeInsets.symmetric(horizontal: 10),
                       child: Text(
