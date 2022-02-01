@@ -10,6 +10,8 @@ class CredentailList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var credentialArr = Provider.of<CredentialProvider>(context).credentialArr;
+    credentialArr.sort(
+        (a, b) => a["service"].toString().compareTo(b["service"].toString()));
 
     return Expanded(
       child: ListView.builder(
