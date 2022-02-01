@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loading_gifs/loading_gifs.dart';
 import 'package:provider/provider.dart';
 import '../providers/credential_provider.dart';
 
@@ -19,16 +20,18 @@ class CredentailList extends StatelessWidget {
             child: Row(
               children: [
                 Container(
+                  height: 35,
+                  width: 35,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
                     color: const Color(0xfffefefe),
                   ),
                   padding: const EdgeInsets.all(5),
                   margin: const EdgeInsets.only(right: 20),
-                  child: Image(
-                    height: 35,
-                    image:
-                        NetworkImage("${credentialArr[i]['url']}/favicon.ico"),
+                  child: Center(
+                    child: FadeInImage.assetNetwork(
+                        placeholder: cupertinoActivityIndicator,
+                        image: "${credentialArr[i]['url']}/favicon.ico"),
                   ),
                 ),
                 Column(
