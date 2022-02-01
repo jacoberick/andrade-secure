@@ -1,4 +1,5 @@
 import 'package:andrade_secure/providers/credential_provider.dart';
+import 'package:andrade_secure/providers/search_provider.dart';
 import 'package:andrade_secure/widgets/credential_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
@@ -7,8 +8,11 @@ import './widgets/dashboard.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => CredentialProvider(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => CredentialProvider()),
+        ChangeNotifierProvider(create: (context) => SearchProvider()),
+      ],
       child: const AndradeSecure(),
     ),
   );

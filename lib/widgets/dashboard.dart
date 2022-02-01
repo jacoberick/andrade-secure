@@ -78,7 +78,6 @@ class _DashboardState extends State<Dashboard> {
                       backgroundColor: const Color(0xff121212),
                       onChanged: (value) {
                         searchContent = value;
-                        print(searchContent);
                       },
                     ))
                   : const Padding(
