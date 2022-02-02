@@ -17,6 +17,7 @@ class _TitleSearchBarState extends State<TitleSearchBar> {
   Widget build(BuildContext context) {
     Function passSearchParams =
         Provider.of<SearchProvider>(context).updateSearchParams;
+
     void _handleOnTapSearch() {
       setState(() {
         _activeSearch = !_activeSearch;

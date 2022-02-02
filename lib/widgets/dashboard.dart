@@ -18,6 +18,10 @@ class _DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     var statusBarHeight = MediaQuery.of(context).viewPadding.top;
     var listLength = Provider.of<CredentialProvider>(context).credentialLength;
+    var weakPasswordArr =
+        Provider.of<CredentialProvider>(context).weakPasswordArr;
+    var strongPasswordArr =
+        Provider.of<CredentialProvider>(context).strongPasswordArr;
 
     return Container(
       padding: EdgeInsets.fromLTRB(20, statusBarHeight, 20, 15),
@@ -35,8 +39,10 @@ class _DashboardState extends State<Dashboard> {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 createStats(listLength.toString(), 'Passwords', 'strong'),
-                createStats('0', 'Strong', 'weak'),
-                createStats('0', 'Mediocre', 'weak'),
+                createStats(
+                    strongPasswordArr.length.toString(), 'Strong', 'weak'),
+                createStats(
+                    weakPasswordArr.length.toString(), 'Mediocre', 'weak'),
               ],
             ),
           ),
