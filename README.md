@@ -1,6 +1,6 @@
 # Andrade Secure
 
-A password manager build with Flutter for mobile.
+A password manager built with Flutter for mobile.
 
 ## Installation
 
