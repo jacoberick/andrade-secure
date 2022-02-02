@@ -42,10 +42,29 @@ class CredentialItem extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    credentialArr[arrIndex]['service'],
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold, color: Color(0xfffefefe)),
+                  Row(
+                    children: [
+                      Text(
+                        credentialArr[arrIndex]['service'],
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xfffefefe)),
+                      ),
+                      Container(
+                        margin: const EdgeInsets.only(left: 10),
+                        child: credentialArr[arrIndex]['isStrong']
+                            ? const Icon(
+                                CupertinoIcons.lock_shield_fill,
+                                color: Colors.teal,
+                                size: 20,
+                              )
+                            : const Icon(
+                                CupertinoIcons.lock_slash_fill,
+                                color: Colors.red,
+                                size: 15,
+                              ),
+                      )
+                    ],
                   ),
                   Text(
                     credentialArr[arrIndex]['username'],
