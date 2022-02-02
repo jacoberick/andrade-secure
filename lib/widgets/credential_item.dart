@@ -36,11 +36,12 @@ class CredentialItem extends StatelessWidget {
                   child: FadeInImage.assetNetwork(
                     placeholder: cupertinoActivityIndicator,
                     image: "${credentialArr[arrIndex]['url']}/favicon.ico",
-                    imageErrorBuilder: (context, error, stackTrace) =>
-                        const Icon(
-                      CupertinoIcons.circle,
-                      color: Colors.black,
-                    ),
+                    imageErrorBuilder: (context, error, stackTrace) {
+                      return const Icon(
+                        CupertinoIcons.circle,
+                        color: Colors.black,
+                      );
+                    },
                   ),
                 ),
               ),

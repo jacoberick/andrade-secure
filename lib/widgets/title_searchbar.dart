@@ -68,7 +68,9 @@ class _TitleSearchBarState extends State<TitleSearchBar> {
             CupertinoIcons.add,
             color: Color(0xff121212),
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushNamed(context, '/create');
+          },
         ),
       ],
     );

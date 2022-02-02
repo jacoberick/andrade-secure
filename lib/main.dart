@@ -1,10 +1,9 @@
 import 'package:andrade_secure/providers/credential_provider.dart';
 import 'package:andrade_secure/providers/search_provider.dart';
-import 'package:andrade_secure/widgets/credential_list.dart';
+import 'package:andrade_secure/pages/home.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
-
-import './widgets/dashboard.dart';
+import './pages/create.dart';
 
 void main() {
   runApp(
@@ -26,15 +25,12 @@ class AndradeSecure extends StatelessWidget {
     return CupertinoApp(
       debugShowCheckedModeBanner: false,
       title: "Andrade Secure",
-      home: CupertinoPageScaffold(
-        backgroundColor: const Color(0xff121212),
-        child: Column(
-          children: const [
-            Dashboard(),
-            CredentailList(),
-          ],
-        ),
-      ),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const Home(),
+        '/create': (context) => const CreateCredential(),
+        // '/edit': (context) => Edit(),
+      },
     );
   }
 }
