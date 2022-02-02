@@ -55,13 +55,37 @@ class CredentialItem extends StatelessWidget {
               ),
             ],
           ),
-          const CupertinoButton(
-            padding: EdgeInsets.only(left: 16),
-            child: Icon(
+          CupertinoButton(
+            padding: const EdgeInsets.only(left: 16),
+            child: const Icon(
               CupertinoIcons.ellipsis,
               color: Colors.white,
             ),
-            onPressed: null,
+            onPressed: () {
+              showCupertinoModalPopup(
+                context: context,
+                builder: (BuildContext context) => CupertinoActionSheet(
+                  title: const Text('Quick Actions'),
+                  actions: [
+                    CupertinoActionSheetAction(
+                      onPressed: () {},
+                      child: const Text('Edit Credential'),
+                    ),
+                    CupertinoActionSheetAction(
+                      isDestructiveAction: true,
+                      onPressed: () {},
+                      child: const Text('Delete Credential'),
+                    ),
+                  ],
+                  cancelButton: CupertinoActionSheetAction(
+                    child: const Text('Cancel'),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                ),
+              );
+            },
           )
         ],
       ),

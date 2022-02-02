@@ -62,6 +62,13 @@ class _TitleSearchBarState extends State<TitleSearchBar> {
           ),
           onPressed: () => _handleOnTapSearch(),
         ),
+        CupertinoButton(
+          child: const Icon(
+            CupertinoIcons.add,
+            color: Color(0xff121212),
+          ),
+          onPressed: () {},
+        ),
       ],
     );
   }
