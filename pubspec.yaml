@@ -37,6 +37,7 @@ dependencies:
   provider: ^6.0.2
   favicon: ^1.0.15
   loading_gifs: ^0.3.0
+  uuid: ^3.0.5
 
 dev_dependencies:
   flutter_test:

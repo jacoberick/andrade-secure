@@ -6,7 +6,7 @@ createStats(numb, type, emphasise) {
       Text(
         numb,
         style: TextStyle(
-            fontSize: emphasise == 'strong' ? 50 : 25,
+            fontSize: emphasise == 'bold' ? 50 : 25,
             fontWeight: FontWeight.bold),
       ),
       Text(
@@ -15,7 +15,7 @@ createStats(numb, type, emphasise) {
       ),
       Container(
         height: 15,
-        width: emphasise == 'strong' ? 110 : 80,
+        width: emphasise == 'bold' ? 110 : 80,
         decoration: const BoxDecoration(
           border: Border(
             left: BorderSide(

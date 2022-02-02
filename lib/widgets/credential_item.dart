@@ -1,6 +1,8 @@
+import 'package:andrade_secure/providers/credential_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:loading_gifs/loading_gifs.dart';
+import 'package:provider/provider.dart';
 
 class CredentialItem extends StatelessWidget {
   final List credentialArr;
@@ -11,6 +13,9 @@ class CredentialItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Function deleteCredential =
+        Provider.of<CredentialProvider>(context).deleteCredential;
+
     return Container(
       margin: const EdgeInsets.only(bottom: 15),
       child: Row(
@@ -92,7 +97,10 @@ class CredentialItem extends StatelessWidget {
                     ),
                     CupertinoActionSheetAction(
                       isDestructiveAction: true,
-                      onPressed: () {},
+                      onPressed: () {
+                        deleteCredential(credentialArr[arrIndex]['id']);
+                        Navigator.pop(context);
+                      },
                       child: const Text('Delete Credential'),
                     ),
                   ],

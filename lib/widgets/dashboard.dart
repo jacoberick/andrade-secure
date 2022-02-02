@@ -38,11 +38,10 @@ class _DashboardState extends State<Dashboard> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                createStats(listLength.toString(), 'Passwords', 'strong'),
+                createStats(listLength.toString(), 'Passwords', 'bold'),
                 createStats(
-                    strongPasswordArr.length.toString(), 'Strong', 'weak'),
-                createStats(
-                    weakPasswordArr.length.toString(), 'Mediocre', 'weak'),
+                    strongPasswordArr.length.toString(), 'Strong', 'slim'),
+                createStats(weakPasswordArr.length.toString(), 'Weak', 'slim'),
               ],
             ),
           ),
