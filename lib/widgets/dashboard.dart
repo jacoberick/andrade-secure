@@ -71,27 +71,35 @@ class _DashboardState extends State<Dashboard> {
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisSize: MainAxisSize.min,
             children: [
-              _activeSearch
-                  ? Expanded(
-                      child: CupertinoSearchTextField(
-                      placeholder: 'Search by Service',
-                      style: const TextStyle(color: Colors.white),
-                      autofocus: true,
-                      backgroundColor: const Color(0xff121212),
-                      onChanged: (value) => passSearchParams(value),
-                    ))
-                  : const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
-                      child: Text(
-                        'Andrade Secure',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 27,
-                          color: Color(0xff121212),
-                        ),
+              Flexible(
+                fit: FlexFit.tight,
+                child: AnimatedCrossFade(
+                  firstChild: const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: Text(
+                      'Andrade Secure',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 27,
+                        color: Color(0xff121212),
                       ),
                     ),
+                  ),
+                  secondChild: CupertinoSearchTextField(
+                    placeholder: 'Search by Service',
+                    style: const TextStyle(color: Colors.white),
+                    autofocus: true,
+                    backgroundColor: const Color(0xff121212),
+                    onChanged: (value) => passSearchParams(value),
+                  ),
+                  crossFadeState: _activeSearch
+                      ? CrossFadeState.showSecond
+                      : CrossFadeState.showFirst,
+                  duration: const Duration(milliseconds: 250),
+                ),
+              ),
               CupertinoButton(
                 child: Icon(
                   _activeSearch ? CupertinoIcons.xmark : CupertinoIcons.search,
