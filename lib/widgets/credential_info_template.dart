@@ -11,34 +11,88 @@ class CredentialInfoTemplate extends StatefulWidget {
 }
 
 class _CredentialInfoTemplateState extends State<CredentialInfoTemplate> {
+  List<Map> inputInfoArr = [
+    {
+      'title': 'Service',
+    },
+    {
+      'title': 'URL',
+    },
+    {
+      'title': 'Username',
+    },
+    {
+      'title': 'Password',
+    },
+  ];
+
   @override
   Widget build(BuildContext context) {
-    var statusBarHeight = MediaQuery.of(context).viewPadding.top;
-
     return CupertinoPageScaffold(
       navigationBar: const CupertinoNavigationBar(
         backgroundColor: Color(0xff121212),
         brightness: Brightness.dark,
+        leading: CupertinoNavigationBarBackButton(
+          color: Color(0xfffc5723),
+        ),
       ),
       backgroundColor: const Color(0xff121212),
       child: Padding(
-        padding: EdgeInsets.fromLTRB(20, statusBarHeight, 20, 15),
+        padding: const EdgeInsets.fromLTRB(30, 30, 20, 15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CupertinoButton(
-              child: const Icon(
-                CupertinoIcons.arrow_left_circle,
+            Text(
+              widget.title,
+              style: const TextStyle(
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
-              onPressed: () {},
             ),
-            Text(widget.title,
+            Container(
+              constraints: const BoxConstraints(maxWidth: 250),
+              margin: const EdgeInsets.only(top: 15),
+              child: Text(
+                widget.title == 'Create'
+                    ? 'new credentials by filling out all fields'
+                    : 'a credential by updating desired fields',
                 style: const TextStyle(
-                  fontSize: 30,
+                  fontSize: 25,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                )),
+                  color: Colors.white38,
+                ),
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.only(top: 50),
+              child: CupertinoFormSection.insetGrouped(
+                margin: const EdgeInsets.all(0),
+                backgroundColor: const Color(0xff121212),
+                children: <Widget>[
+                  ...inputInfoArr.map((e) {
+                    return CupertinoFormRow(
+                      prefix: Text(
+                        e['title'],
+                        style: TextStyle(fontSize: 15, color: Colors.grey[600]),
+                      ),
+                      child: CupertinoTextFormFieldRow(),
+                    );
+                  }).toList(),
+                ],
+              ),
+            ),
+            Container(
+              width: double.infinity,
+              margin: const EdgeInsets.only(top: 50),
+              child: CupertinoButton(
+                color: const Color(0xfffc5723),
+                child: Text(widget.title == 'Create'
+                    ? 'Submit Credential'
+                    : 'Update Credential'),
+                onPressed: () {},
+              ),
+            )
           ],
         ),
       ),
