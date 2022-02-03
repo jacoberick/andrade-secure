@@ -27,7 +27,7 @@ class CredentialProvider with ChangeNotifier {
       'isStrong': true
     },
     {
-      'id': ' 50643527-580e-4e7e-924f-a6105727b1c5',
+      'id': '50643527-580e-4e7e-924f-a6105727b1c5',
       'service': 'Walmart',
       'url': 'https://walmart.com',
       'username': 'jacobwhite@email.com',
@@ -91,6 +91,15 @@ class CredentialProvider with ChangeNotifier {
       'isStrong': false
     },
   ];
+
+  void addCredential(obj) {
+    credentialArr.add(obj);
+    notifyListeners();
+  }
+
+  void updateCredential(index, obj) {
+    return;
+  }
 
   void deleteCredential(id) {
     credentialArr.removeWhere((cred) => cred['id'] == id);

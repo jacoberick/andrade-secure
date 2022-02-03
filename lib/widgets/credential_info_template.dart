@@ -1,16 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:uuid/uuid.dart';
 
 class CredentialInfoTemplate extends StatefulWidget {
   final String title;
+  final Function operation;
 
-  const CredentialInfoTemplate(this.title, {Key? key}) : super(key: key);
+  const CredentialInfoTemplate(this.title, this.operation, {Key? key})
+      : super(key: key);
 
   @override
   _CredentialInfoTemplateState createState() => _CredentialInfoTemplateState();
 }
 
 class _CredentialInfoTemplateState extends State<CredentialInfoTemplate> {
+  var uuid = const Uuid();
   List<Map> inputInfoArr = [
     {
       'title': 'Service',
@@ -28,6 +32,14 @@ class _CredentialInfoTemplateState extends State<CredentialInfoTemplate> {
 
   @override
   Widget build(BuildContext context) {
+    Map credentialInfo = {
+      'id': uuid.v4(),
+      'service': '',
+      'url': '',
+      'username': '',
+      'password': '',
+      'isStrong': false
+    };
     return CupertinoPageScaffold(
       navigationBar: const CupertinoNavigationBar(
         backgroundColor: Color(0xff121212),
@@ -78,7 +90,12 @@ class _CredentialInfoTemplateState extends State<CredentialInfoTemplate> {
                           style:
                               TextStyle(fontSize: 15, color: Colors.grey[600]),
                         ),
-                        child: CupertinoTextFormFieldRow(),
+                        child: CupertinoTextFormFieldRow(
+                          textInputAction: e['title'] == 'Password'
+                              ? TextInputAction.done
+                              : TextInputAction.next,
+                          obscureText: e['title'] == 'Password' ? true : false,
+                        ),
                       );
                     }).toList(),
                   ],
