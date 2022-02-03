@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -18,6 +16,10 @@ class _CredentialInfoTemplateState extends State<CredentialInfoTemplate> {
     var statusBarHeight = MediaQuery.of(context).viewPadding.top;
 
     return CupertinoPageScaffold(
+      navigationBar: const CupertinoNavigationBar(
+        backgroundColor: Color(0xff121212),
+        brightness: Brightness.dark,
+      ),
       backgroundColor: const Color(0xff121212),
       child: Padding(
         padding: EdgeInsets.fromLTRB(20, statusBarHeight, 20, 15),
