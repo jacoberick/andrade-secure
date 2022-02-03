@@ -93,7 +93,9 @@ class CredentialItem extends StatelessWidget {
                   title: const Text('Quick Actions'),
                   actions: [
                     CupertinoActionSheetAction(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/edit');
+                      },
                       child: const Text('Edit Credential'),
                     ),
                     CupertinoActionSheetAction(

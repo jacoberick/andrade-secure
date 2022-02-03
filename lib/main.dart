@@ -4,6 +4,7 @@ import 'package:andrade_secure/pages/home.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import './pages/create.dart';
+import './pages/edit.dart';
 
 void main() {
   runApp(
@@ -29,7 +30,7 @@ class AndradeSecure extends StatelessWidget {
       routes: {
         '/': (context) => const Home(),
         '/create': (context) => const CreateCredential(),
-        // '/edit': (context) => Edit(),
+        '/edit': (context) => const EditCredential(),
       },
     );
   }
