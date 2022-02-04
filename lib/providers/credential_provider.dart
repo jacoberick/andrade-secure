@@ -103,7 +103,7 @@ class CredentialProvider with ChangeNotifier {
   }
 
   void deleteCredential(id) {
-    credentialArr.removeWhere((cred) => cred[id] == id);
+    credentialArr.removeWhere((cred) => cred.id == id);
     notifyListeners();
   }
 

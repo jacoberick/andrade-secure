@@ -101,7 +101,7 @@ class CredentialItem extends StatelessWidget {
                     CupertinoActionSheetAction(
                       isDestructiveAction: true,
                       onPressed: () {
-                        deleteCredential(credentialArr[arrIndex]['id']);
+                        deleteCredential(credentialArr[arrIndex].id);
                         Navigator.pop(context);
                       },
                       child: const Text('Delete Credential'),

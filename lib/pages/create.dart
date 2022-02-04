@@ -23,7 +23,7 @@ class _CreateCredentialState extends State<CreateCredential> {
       'url': '',
       'username': '',
       'password': '',
-      'isStrong': true,
+      'isStrong': false,
     };
     Function addCredential =
         Provider.of<CredentialProvider>(context).addCredential;

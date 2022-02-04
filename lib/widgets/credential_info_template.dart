@@ -24,9 +24,13 @@ class _CredentialInfoTemplateState extends State<CredentialInfoTemplate> {
     credential.url = widget.credentialObj['url'];
     credential.username = widget.credentialObj['username'];
     credential.password = widget.credentialObj['password'];
-    credential.isStrong = widget.credentialObj['isStrong'];
+    credential.isStrong =
+        widget.credentialObj['password'] == 'strongPassword' ? true : false;
     widget.operation(credential);
+    Navigator.pop(context);
   }
+
+  final _formKey = GlobalKey<FormState>();
 
   List<Map> inputInfoArr = [
     {
@@ -82,30 +86,39 @@ class _CredentialInfoTemplateState extends State<CredentialInfoTemplate> {
                   ),
                 ),
               ),
-              Container(
-                margin: const EdgeInsets.only(top: 50),
-                child: CupertinoFormSection.insetGrouped(
-                  margin: const EdgeInsets.all(0),
-                  backgroundColor: const Color(0xff121212),
-                  children: <Widget>[
-                    ...inputInfoArr.map((e) {
-                      return CupertinoFormRow(
-                        prefix: Text(
-                          e['title'],
-                          style:
-                              TextStyle(fontSize: 15, color: Colors.grey[600]),
-                        ),
-                        child: CupertinoTextFormFieldRow(
-                          onChanged: (value) => widget
-                              .credentialObj[e['title'].toLowerCase()] = value,
-                          textInputAction: e['title'] == 'Password'
-                              ? TextInputAction.done
-                              : TextInputAction.next,
-                          obscureText: e['title'] == 'Password' ? true : false,
-                        ),
-                      );
-                    }).toList(),
-                  ],
+              Form(
+                key: _formKey,
+                child: Container(
+                  margin: const EdgeInsets.only(top: 50),
+                  child: CupertinoFormSection.insetGrouped(
+                    margin: const EdgeInsets.all(0),
+                    backgroundColor: const Color(0xff121212),
+                    children: <Widget>[
+                      ...inputInfoArr.map((e) {
+                        return CupertinoFormRow(
+                          prefix: Text(
+                            e['title'],
+                            style: TextStyle(
+                                fontSize: 15, color: Colors.grey[600]),
+                          ),
+                          child: CupertinoTextFormFieldRow(
+                            validator: (value) =>
+                                (value == null || value.isEmpty)
+                                    ? 'Check fields'
+                                    : null,
+                            onChanged: (value) =>
+                                widget.credentialObj[e['title'].toLowerCase()] =
+                                    value,
+                            textInputAction: e['title'] == 'Password'
+                                ? TextInputAction.done
+                                : TextInputAction.next,
+                            obscureText:
+                                e['title'] == 'Password' ? true : false,
+                          ),
+                        );
+                      }).toList(),
+                    ],
+                  ),
                 ),
               ),
               Container(
@@ -117,7 +130,9 @@ class _CredentialInfoTemplateState extends State<CredentialInfoTemplate> {
                       ? 'Submit Credential'
                       : 'Update Credential'),
                   onPressed: () {
-                    submitForm();
+                    if (_formKey.currentState!.validate()) {
+                      submitForm();
+                    }
                   },
                 ),
               )
