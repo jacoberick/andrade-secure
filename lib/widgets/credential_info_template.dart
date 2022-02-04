@@ -1,12 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:uuid/uuid.dart';
+import '../models/credential_model.dart';
 
 class CredentialInfoTemplate extends StatefulWidget {
   final String title;
   final Function operation;
+  final Map credentialObj;
 
-  const CredentialInfoTemplate(this.title, this.operation, {Key? key})
+  const CredentialInfoTemplate(this.title, this.operation, this.credentialObj,
+      {Key? key})
       : super(key: key);
 
   @override
@@ -14,7 +16,18 @@ class CredentialInfoTemplate extends StatefulWidget {
 }
 
 class _CredentialInfoTemplateState extends State<CredentialInfoTemplate> {
-  var uuid = const Uuid();
+  var credential = Credential();
+
+  void submitForm() {
+    credential.id = widget.credentialObj['id'];
+    credential.service = widget.credentialObj['service'];
+    credential.url = widget.credentialObj['url'];
+    credential.username = widget.credentialObj['username'];
+    credential.password = widget.credentialObj['password'];
+    credential.isStrong = widget.credentialObj['isStrong'];
+    widget.operation(credential);
+  }
+
   List<Map> inputInfoArr = [
     {
       'title': 'Service',
@@ -83,6 +96,8 @@ class _CredentialInfoTemplateState extends State<CredentialInfoTemplate> {
                               TextStyle(fontSize: 15, color: Colors.grey[600]),
                         ),
                         child: CupertinoTextFormFieldRow(
+                          onChanged: (value) => widget
+                              .credentialObj[e['title'].toLowerCase()] = value,
                           textInputAction: e['title'] == 'Password'
                               ? TextInputAction.done
                               : TextInputAction.next,
@@ -101,7 +116,9 @@ class _CredentialInfoTemplateState extends State<CredentialInfoTemplate> {
                   child: Text(widget.title == 'Create'
                       ? 'Submit Credential'
                       : 'Update Credential'),
-                  onPressed: () {},
+                  onPressed: () {
+                    submitForm();
+                  },
                 ),
               )
             ],

@@ -11,6 +11,6 @@ class EditCredential extends StatelessWidget {
   Widget build(BuildContext context) {
     Function updateCredential =
         Provider.of<CredentialProvider>(context).updateCredential;
-    return CredentialInfoTemplate('Edit', updateCredential);
+    return CredentialInfoTemplate('Edit', updateCredential, {});
   }
 }
