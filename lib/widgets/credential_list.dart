@@ -14,13 +14,12 @@ class CredentailList extends StatelessWidget {
     // Stores credential info and sorts it alphabetically
     var searchParamInfo = Provider.of<SearchProvider>(context).searchParamInfo;
     var credentialArr = Provider.of<CredentialProvider>(context).credentialArr;
-    credentialArr.sort(
-        (a, b) => a["service"].toString().compareTo(b["service"].toString()));
+    credentialArr
+        .sort((a, b) => a.service.toString().compareTo(b.service.toString()));
 
     var filteredList = [...credentialArr]
-        .where((c) => c['service']
-            .toLowerCase()
-            .startsWith(searchParamInfo.toLowerCase()))
+        .where((c) =>
+            c.service.toLowerCase().startsWith(searchParamInfo.toLowerCase()))
         .toList();
 
     return Expanded(

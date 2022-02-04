@@ -35,7 +35,7 @@ class CredentialItem extends StatelessWidget {
                 child: Center(
                   child: FadeInImage.assetNetwork(
                     placeholder: cupertinoActivityIndicator,
-                    image: "${credentialArr[arrIndex]['url']}/favicon.ico",
+                    image: "${credentialArr[arrIndex].url}/favicon.ico",
                     imageErrorBuilder: (context, error, stackTrace) {
                       return const Icon(
                         CupertinoIcons.circle,
@@ -51,14 +51,14 @@ class CredentialItem extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        credentialArr[arrIndex]['service'],
+                        credentialArr[arrIndex].service,
                         style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Color(0xfffefefe)),
                       ),
                       Container(
                         margin: const EdgeInsets.only(left: 10),
-                        child: credentialArr[arrIndex]['isStrong']
+                        child: credentialArr[arrIndex].isStrong
                             ? const Icon(
                                 CupertinoIcons.lock_shield_fill,
                                 color: Colors.teal,
@@ -73,7 +73,7 @@ class CredentialItem extends StatelessWidget {
                     ],
                   ),
                   Text(
-                    credentialArr[arrIndex]['username'],
+                    credentialArr[arrIndex].username,
                     style: TextStyle(fontSize: 14, color: Colors.grey.shade400),
                   ),
                 ],

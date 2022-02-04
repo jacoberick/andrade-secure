@@ -32,14 +32,6 @@ class _CredentialInfoTemplateState extends State<CredentialInfoTemplate> {
 
   @override
   Widget build(BuildContext context) {
-    Map credentialInfo = {
-      'id': uuid.v4(),
-      'service': '',
-      'url': '',
-      'username': '',
-      'password': '',
-      'isStrong': false
-    };
     return CupertinoPageScaffold(
       navigationBar: const CupertinoNavigationBar(
         backgroundColor: Color(0xff121212),
