@@ -94,7 +94,8 @@ class CredentialItem extends StatelessWidget {
                   actions: [
                     CupertinoActionSheetAction(
                       onPressed: () {
-                        Navigator.pushNamed(context, '/edit');
+                        Navigator.pushNamed(context, '/edit',
+                            arguments: {'id': credentialArr[arrIndex].id});
                       },
                       child: const Text('Edit Credential'),
                     ),

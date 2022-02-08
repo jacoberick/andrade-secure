@@ -32,23 +32,27 @@ class _CredentialInfoTemplateState extends State<CredentialInfoTemplate> {
 
   final _formKey = GlobalKey<FormState>();
 
-  List<Map> inputInfoArr = [
-    {
-      'title': 'Service',
-    },
-    {
-      'title': 'URL',
-    },
-    {
-      'title': 'Username',
-    },
-    {
-      'title': 'Password',
-    },
-  ];
-
   @override
   Widget build(BuildContext context) {
+    List<Map> inputInfoArr = [
+      {
+        'title': 'Service',
+        'content': widget.credentialObj['service'],
+      },
+      {
+        'title': 'URL',
+        'content': widget.credentialObj['url'],
+      },
+      {
+        'title': 'Username',
+        'content': widget.credentialObj['username'],
+      },
+      {
+        'title': 'Password',
+        'content': widget.credentialObj['password'],
+      },
+    ];
+
     return CupertinoPageScaffold(
       navigationBar: const CupertinoNavigationBar(
         backgroundColor: Color(0xff121212),
@@ -102,6 +106,7 @@ class _CredentialInfoTemplateState extends State<CredentialInfoTemplate> {
                                 fontSize: 15, color: Colors.grey[600]),
                           ),
                           child: CupertinoTextFormFieldRow(
+                            initialValue: e['content'],
                             validator: (value) =>
                                 (value == null || value.isEmpty)
                                     ? 'Check fields'

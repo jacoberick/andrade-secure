@@ -93,7 +93,7 @@ class CredentialProvider with ChangeNotifier {
     ),
   ];
 
-  void addCredential(obj) {
+  addCredential(obj) {
     credentialArr.add(obj);
     notifyListeners();
   }
@@ -105,6 +105,10 @@ class CredentialProvider with ChangeNotifier {
   void deleteCredential(id) {
     credentialArr.removeWhere((cred) => cred.id == id);
     notifyListeners();
+  }
+
+  getCredentialById(id) {
+    return _credentials.where((c) => c.id == id).toList();
   }
 
   get credentialArr => _credentials;
