@@ -21,64 +21,69 @@ class CredentialItem extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
-            children: [
-              Container(
-                height: 35,
-                width: 35,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                  color: const Color(0xfffefefe),
-                ),
-                padding: const EdgeInsets.all(5),
-                margin: const EdgeInsets.only(right: 20),
-                child: Center(
-                  child: FadeInImage.assetNetwork(
-                    placeholder: cupertinoActivityIndicator,
-                    image: "${credentialArr[arrIndex].url}/favicon.ico",
-                    imageErrorBuilder: (context, error, stackTrace) {
-                      return const Icon(
-                        CupertinoIcons.circle,
-                        color: Colors.black,
-                      );
-                    },
+          GestureDetector(
+            onTap: () => Navigator.pushNamed(context, '/detail',
+                arguments: {'id': credentialArr[arrIndex].id}),
+            child: Row(
+              children: [
+                Container(
+                  height: 35,
+                  width: 35,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    color: const Color(0xfffefefe),
+                  ),
+                  padding: const EdgeInsets.all(5),
+                  margin: const EdgeInsets.only(right: 20),
+                  child: Center(
+                    child: FadeInImage.assetNetwork(
+                      placeholder: cupertinoActivityIndicator,
+                      image: "${credentialArr[arrIndex].url}/favicon.ico",
+                      imageErrorBuilder: (context, error, stackTrace) {
+                        return const Icon(
+                          CupertinoIcons.circle,
+                          color: Colors.black,
+                        );
+                      },
+                    ),
                   ),
                 ),
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Text(
-                        credentialArr[arrIndex].service,
-                        style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xfffefefe)),
-                      ),
-                      Container(
-                        margin: const EdgeInsets.only(left: 10),
-                        child: credentialArr[arrIndex].isStrong
-                            ? const Icon(
-                                CupertinoIcons.lock_shield_fill,
-                                color: Colors.teal,
-                                size: 20,
-                              )
-                            : const Icon(
-                                CupertinoIcons.lock_slash_fill,
-                                color: Colors.red,
-                                size: 15,
-                              ),
-                      )
-                    ],
-                  ),
-                  Text(
-                    credentialArr[arrIndex].username,
-                    style: TextStyle(fontSize: 14, color: Colors.grey.shade400),
-                  ),
-                ],
-              ),
-            ],
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Text(
+                          credentialArr[arrIndex].service,
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xfffefefe)),
+                        ),
+                        Container(
+                          margin: const EdgeInsets.only(left: 10),
+                          child: credentialArr[arrIndex].isStrong
+                              ? const Icon(
+                                  CupertinoIcons.lock_shield_fill,
+                                  color: Colors.teal,
+                                  size: 20,
+                                )
+                              : const Icon(
+                                  CupertinoIcons.lock_slash_fill,
+                                  color: Colors.red,
+                                  size: 15,
+                                ),
+                        )
+                      ],
+                    ),
+                    Text(
+                      credentialArr[arrIndex].username,
+                      style:
+                          TextStyle(fontSize: 14, color: Colors.grey.shade400),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
           CupertinoButton(
             padding: const EdgeInsets.only(left: 16),

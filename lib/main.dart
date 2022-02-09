@@ -1,3 +1,4 @@
+import 'package:andrade_secure/pages/credential_detail.dart';
 import 'package:andrade_secure/providers/credential_provider.dart';
 import 'package:andrade_secure/providers/search_provider.dart';
 import 'package:andrade_secure/pages/home.dart';
@@ -31,6 +32,7 @@ class AndradeSecure extends StatelessWidget {
         '/': (context) => const Home(),
         '/create': (context) => const CreateCredential(),
         '/edit': (context) => const EditCredential(),
+        '/detail': (context) => const CredentialDetail(),
       },
     );
   }
