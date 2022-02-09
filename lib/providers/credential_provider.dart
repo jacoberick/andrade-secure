@@ -98,12 +98,14 @@ class CredentialProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void updateCredential(index, obj) {
-    return;
-  }
-
   void deleteCredential(id) {
     credentialArr.removeWhere((cred) => cred.id == id);
+    notifyListeners();
+  }
+
+  void updateCredential(newObj) {
+    deleteCredential(newObj.id);
+    addCredential(newObj);
     notifyListeners();
   }
 

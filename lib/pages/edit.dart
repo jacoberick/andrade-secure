@@ -16,7 +16,6 @@ class EditCredential extends StatelessWidget {
 
     final args = ModalRoute.of(context)!.settings.arguments as Map;
     final selectedCredentialInstance = getCredentialById(args['id']);
-    print(selectedCredentialInstance[0].id);
 
     toObj() {
       return {
