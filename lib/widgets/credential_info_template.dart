@@ -54,11 +54,17 @@ class _CredentialInfoTemplateState extends State<CredentialInfoTemplate> {
     ];
 
     return CupertinoPageScaffold(
-      navigationBar: const CupertinoNavigationBar(
-        backgroundColor: Color(0xff121212),
+      navigationBar: CupertinoNavigationBar(
+        backgroundColor: const Color(0xff121212),
         brightness: Brightness.dark,
-        leading: CupertinoNavigationBarBackButton(
-          color: Color(0xfffc5723),
+        leading: CupertinoButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: const Icon(
+            CupertinoIcons.left_chevron,
+            color: Color(0xfffc5723),
+          ),
         ),
       ),
       backgroundColor: const Color(0xff121212),

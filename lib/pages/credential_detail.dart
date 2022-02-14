@@ -35,10 +35,16 @@ class CredentialDetail extends StatelessWidget {
     final args = ModalRoute.of(context)!.settings.arguments as Map;
     final selectedCredential = getCredentialById(args['id']);
     return CupertinoPageScaffold(
-      navigationBar: const CupertinoNavigationBar(
-        backgroundColor: Color(0xff121212),
-        leading: CupertinoNavigationBarBackButton(
-          color: Color(0xfffc5723),
+      navigationBar: CupertinoNavigationBar(
+        backgroundColor: const Color(0xff121212),
+        leading: CupertinoButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: const Icon(
+            CupertinoIcons.left_chevron,
+            color: Color(0xfffc5723),
+          ),
         ),
       ),
       child: Padding(
@@ -84,8 +90,14 @@ class CredentialDetail extends StatelessWidget {
                       child: Container(
                         margin: const EdgeInsets.only(right: 5),
                         child: CupertinoButton(
-                          child: const Text('Edit'),
-                          onPressed: () {},
+                          child: const Text(
+                            'Edit',
+                            style: TextStyle(fontSize: 12),
+                          ),
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/edit',
+                                arguments: {'id': selectedCredential[0].id});
+                          },
                           color: const Color(0xfffc5723),
                         ),
                       ),
@@ -94,7 +106,10 @@ class CredentialDetail extends StatelessWidget {
                       child: Container(
                         margin: const EdgeInsets.only(left: 5),
                         child: CupertinoButton(
-                          child: const Text('Dte'),
+                          child: const Text(
+                            'Delete',
+                            style: TextStyle(fontSize: 12),
+                          ),
                           color: Colors.red,
                           onPressed: () {},
                         ),
