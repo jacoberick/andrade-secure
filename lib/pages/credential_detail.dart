@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:andrade_secure/providers/credential_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -30,6 +32,8 @@ class CredentialDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Function deleteCredential =
+        Provider.of<CredentialProvider>(context).deleteCredential;
     Function getCredentialById =
         Provider.of<CredentialProvider>(context).getCredentialById;
     final args = ModalRoute.of(context)!.settings.arguments as Map;
@@ -111,7 +115,11 @@ class CredentialDetail extends StatelessWidget {
                             style: TextStyle(fontSize: 12),
                           ),
                           color: Colors.red,
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pop(context);
+                            Timer(const Duration(milliseconds: 500),
+                                () => deleteCredential(args['id']));
+                          },
                         ),
                       ),
                     ),
