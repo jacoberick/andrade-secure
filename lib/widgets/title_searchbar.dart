@@ -11,6 +11,7 @@ class TitleSearchBar extends StatefulWidget {
 }
 
 class _TitleSearchBarState extends State<TitleSearchBar> {
+  TextEditingController _controller = TextEditingController();
   bool _activeSearch = false;
 
   @override
@@ -20,8 +21,9 @@ class _TitleSearchBarState extends State<TitleSearchBar> {
 
     void _handleOnTapSearch() {
       setState(() {
+        passSearchParams('');
         _activeSearch = !_activeSearch;
-        _activeSearch ? passSearchParams('') : null;
+        !_activeSearch ? _controller.clear() : null;
       });
     }
 
@@ -44,11 +46,14 @@ class _TitleSearchBarState extends State<TitleSearchBar> {
               ),
             ),
             secondChild: CupertinoSearchTextField(
+              controller: _controller,
               placeholder: 'Search by Service',
               style: const TextStyle(color: Colors.white),
               autofocus: true,
               backgroundColor: const Color(0xff121212),
-              onChanged: (value) => passSearchParams(value),
+              onChanged: (value) {
+                passSearchParams(value);
+              },
             ),
             crossFadeState: _activeSearch
                 ? CrossFadeState.showSecond
