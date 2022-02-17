@@ -4,14 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class TitleSearchBar extends StatefulWidget {
-  const TitleSearchBar({Key? key}) : super(key: key);
+  final double deviceWidth;
+  const TitleSearchBar(this.deviceWidth, {Key? key}) : super(key: key);
 
   @override
   State<TitleSearchBar> createState() => _TitleSearchBarState();
 }
 
 class _TitleSearchBarState extends State<TitleSearchBar> {
-  TextEditingController _controller = TextEditingController();
+  final TextEditingController _controller = TextEditingController();
   bool _activeSearch = false;
 
   @override
@@ -27,57 +28,63 @@ class _TitleSearchBarState extends State<TitleSearchBar> {
       });
     }
 
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Flexible(
-          fit: FlexFit.tight,
-          child: AnimatedCrossFade(
-            firstChild: const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: Text(
-                'Andrade Secure',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 27,
-                  color: Color(0xff121212),
+    return Container(
+      constraints: BoxConstraints(
+          maxWidth: widget.deviceWidth > 700
+              ? widget.deviceWidth - widget.deviceWidth / 4
+              : widget.deviceWidth),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Flexible(
+            fit: FlexFit.tight,
+            child: AnimatedCrossFade(
+              firstChild: const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10),
+                child: Text(
+                  'Andrade Secure',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 27,
+                    color: Color(0xff121212),
+                  ),
                 ),
               ),
+              secondChild: CupertinoSearchTextField(
+                controller: _controller,
+                placeholder: 'Search by Service',
+                style: const TextStyle(color: Colors.white),
+                autofocus: true,
+                backgroundColor: const Color(0xff121212),
+                onChanged: (value) {
+                  passSearchParams(value);
+                },
+              ),
+              crossFadeState: _activeSearch
+                  ? CrossFadeState.showSecond
+                  : CrossFadeState.showFirst,
+              duration: const Duration(milliseconds: 250),
             ),
-            secondChild: CupertinoSearchTextField(
-              controller: _controller,
-              placeholder: 'Search by Service',
-              style: const TextStyle(color: Colors.white),
-              autofocus: true,
-              backgroundColor: const Color(0xff121212),
-              onChanged: (value) {
-                passSearchParams(value);
-              },
+          ),
+          CupertinoButton(
+            child: Icon(
+              _activeSearch ? CupertinoIcons.xmark : CupertinoIcons.search,
+              color: const Color(0xff121212),
             ),
-            crossFadeState: _activeSearch
-                ? CrossFadeState.showSecond
-                : CrossFadeState.showFirst,
-            duration: const Duration(milliseconds: 250),
+            onPressed: () => _handleOnTapSearch(),
           ),
-        ),
-        CupertinoButton(
-          child: Icon(
-            _activeSearch ? CupertinoIcons.xmark : CupertinoIcons.search,
-            color: const Color(0xff121212),
+          CupertinoButton(
+            child: const Icon(
+              CupertinoIcons.add,
+              color: Color(0xff121212),
+            ),
+            onPressed: () {
+              Navigator.pushNamed(context, '/create');
+            },
           ),
-          onPressed: () => _handleOnTapSearch(),
-        ),
-        CupertinoButton(
-          child: const Icon(
-            CupertinoIcons.add,
-            color: Color(0xff121212),
-          ),
-          onPressed: () {
-            Navigator.pushNamed(context, '/create');
-          },
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
